@@ -289,22 +289,23 @@
 // DATA
 // ══════════════════════════════════════════
 const countries = [
-  { code:'AR', flag:'🇦🇷', name:'Argentina (ARS)', currency:'ARS' },
-  { code:'BR', flag:'🇧🇷', name:'Brazil (BRL)',     currency:'BRL' },
-  { code:'CL', flag:'🇨🇱', name:'Chile (CLP)',      currency:'CLP' },
-  { code:'EG', flag:'🇪🇬', name:'Egypt (EGP)',      currency:'EGP' },
-  { code:'IN', flag:'🇮🇳', name:'India (INR)',      currency:'INR' },
-  { code:'JP', flag:'🇯🇵', name:'Japan (JPY)',      currency:'JPY' },
-  { code:'KR', flag:'🇰🇷', name:'Korea (KRW)',      currency:'KRW' },
-  { code:'MM', flag:'🇲🇲', name:'Myanmar (MMK)',    currency:'MMK' },
-  { code:'MX', flag:'🇲🇽', name:'Mexico (MXN)',     currency:'MXN' },
-  { code:'NP', flag:'🇳🇵', name:'Nepal (NPR)',      currency:'NPR' },
-  { code:'PH', flag:'🇵🇭', name:'Philippines (PHP)',currency:'PHP' },
-  { code:'PK', flag:'🇵🇰', name:'Pakistan (PKR)',   currency:'PKR' },
-  { code:'TH', flag:'🇹🇭', name:'Thailand (THB)',   currency:'THB' },
-  { code:'TR', flag:'🇹🇷', name:'Turkey (TRY)',     currency:'TRY' },
-  { code:'EC', flag:'🇪🇨', name:'Ecuador (USD)',    currency:'USD' },
-  { code:'VN', flag:'🇻🇳', name:'Vietnam (VND)',    currency:'VND' },
+  { code:'AR', flag:'flags/ar.png', name:'Argentina (ARS)', currency:'ARS' },
+  { code:'BR', flag:'flags/br.png', name:'Brazil (BRL)',     currency:'BRL' },
+  { code:'CL', flag:'flags/cl.png', name:'Chile (CLP)',      currency:'CLP' },
+  { code:'EG', flag:'flags/eg.png', name:'Egypt (EGP)',      currency:'EGP' },
+  { code:'IN', flag:'flags/in.png', name:'India (INR)',      currency:'INR' },
+  { code:'JP', flag:'flags/jp.png', name:'Japan (JPY)',      currency:'JPY' },
+  { code:'KR', flag:'flags/kr.png', name:'Korea (KRW)',      currency:'KRW' },
+  { code:'MM', flag:'flags/mm.png', name:'Myanmar (MMK)',    currency:'MMK' },
+  { code:'MX', flag:'flags/mx.png', name:'Mexico (MXN)',     currency:'MXN' },
+  { code:'NP', flag:'flags/np.png', name:'Nepal (NPR)',      currency:'NPR' },
+  { code:'PH', flag:'flags/ph.png', name:'Philippines (PHP)',currency:'PHP' },
+  { code:'PK', flag:'flags/pk.png', name:'Pakistan (PKR)',   currency:'PKR' },
+  { code:'TH', flag:'flags/th.png', name:'Thailand (THB)',   currency:'THB' },
+  { code:'TR', flag:'flags/tr.png', name:'Turkey (TRY)',     currency:'TRY' },
+  { code:'EC', flag:'flags/ec.png', name:'Ecuador (USD)',    currency:'USD' },
+  { code:'VN', flag:'flags/vn.png', name:'Vietnam (VND)',    currency:'VND' },
+  { code:'ZA', flag:'flags/za.png', name:'South Africa (ZAR)', currency:'ZAR' },
 ];
 
 // Per-country gateway data
@@ -434,7 +435,7 @@ function renderGrid(list) {
   const grid = document.getElementById('country-grid');
   grid.innerHTML = list.map(c => `
     <div class="country-item" onclick="showDetail('${c.code}')">
-      <div class="flag-box">${c.flag}</div>
+      <div class="flag-box"><img src="${c.flag}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;"></div>
       <div class="country-name">${c.name}</div>
     </div>
   `).join('');
@@ -455,7 +456,7 @@ function showDetail(code) {
   if (!country) return;
   const data = gateways[code] || defaultGateway(country.name, country.currency);
 
-  document.getElementById('detail-flag').textContent = country.flag;
+  document.getElementById('detail-flag').innerHTML = `<img src="${country.flag}" alt="${country.name}" style="width:100%;height:100%;object-fit:cover;">`;
   document.getElementById('detail-title').textContent = country.name;
 
   const s = data.settlement;
